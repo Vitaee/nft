@@ -20,7 +20,7 @@ Starts the application in development using `nodemon` and `ts-node` to do hot re
 
 #### `npm run start`
 
-Starts the app in production by first building the project with `npm run build`, and then executing the compiled JavaScript at `build/index.js`.
+Starts the app in production by first building the project with `npm run build`, and then executing the compiled JavaScript at `build/server.js`.
 
 #### `npm run build`
 
@@ -42,6 +42,15 @@ Format your code.
 
 Format your code in watch mode, waiting for file changes.
 
+### Used Technologies
+<div class="row">
+  <img src="https://www.vectorlogo.zone/logos/nodejs/nodejs-icon.svg" />
+  <img src="https://www.vectorlogo.zone/logos/nodemonio/nodemonio-icon.svg" />
+  <img src="https://www.vectorlogo.zone/logos/mongodb/mongodb-icon.svg" />
+  <img src="https://www.vectorlogo.zone/logos/docker/docker-icon.svg" />
+  <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" />
+  <img src="https://www.vectorlogo.zone/logos/nginx/nginx-icon.svg" />
+</div>
 
 ### Contributors
 <a href="https://github.com/Vitaee/nft/graphs/contributors">
