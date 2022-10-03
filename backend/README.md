@@ -12,6 +12,19 @@
 - VS Code debugger scripts
 - Local development with Nodemon
 
+### Environments
+
+#### Development environment
+First off all install all dependencies with ```npm i``` command. In this project we have two environments. For development you should create ```.env.development``` file in project directory ( backend folder ).
+
+For now, in ```.env.development```  file we are storing ``` APP_PORT ``` variable. So your .env file will look like this:
+```
+APP_PORT=3001
+```
+#### Production environment
+
+In your remote server, you should create ```.env.production``` file. Secondly, put your necessary variables inside to it. Then run this command ```npm run start```. 
+
 ### Scripts
 
 #### `npm run start:dev`
