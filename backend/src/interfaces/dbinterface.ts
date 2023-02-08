@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { Sequelize } from 'sequelize';
+import { User } from '../database/models/user';
+import { UserToken } from '../database/models/user_token';
 
 export interface dbInterface {
-  // Sequelize ORM object
   sequelize: Sequelize;
-  // Use this function to establish connection with DB
   authenticate: Function;
-  // Models for this project
+  associate: Function;
+  user: User;
+  userToken: UserToken;
 }
