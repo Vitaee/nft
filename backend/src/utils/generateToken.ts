@@ -4,12 +4,13 @@
 import jwt from 'jsonwebtoken';
 import { UserToken } from '../database/models/user_token';
 import configs from './configuration';
-import { database, getDBInstance } from '../database/db';
+import { Database, getDBInstance } from '../database/db';
+import { User } from '../database/models/user';
 
-export const generateTokens = async (user: any) => {
+export const generateTokens = async (user: User): Promise<{accessToken:string, refreshToken:string}> =>  {
   try {
 
-    const database: database = await getDBInstance();
+    const database: Database = await getDBInstance();
 
     const payload = { id: user.id };
 
@@ -17,7 +18,7 @@ export const generateTokens = async (user: any) => {
 
     const refreshToken = jwt.sign(payload, configs.refresh_token_private_key, { expiresIn: "30d" });
 
-    const userToken = await database.userToken.findOne({ where: { userId: user.id } });
+    const userToken: UserToken = await database.userToken.findOne({ where: { userId: user.id } });
     
     if (userToken) {
         await database.userToken.destroy({

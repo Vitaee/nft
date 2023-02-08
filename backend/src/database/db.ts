@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 import * as pg from 'pg';
@@ -7,7 +8,7 @@ import configs from '../utils/configuration';
 import { initUser } from './models/user';
 import { initUserToken } from './models/user_token';
 
-export class database implements dbInterface {
+export class Database implements dbInterface {
   sequelize: Sequelize;
   user: any;
   userToken: any;
@@ -28,7 +29,7 @@ export class database implements dbInterface {
     initUser(this.sequelize);
     initUserToken(this.sequelize);
     this.user = this.sequelize.models.user;
-    this.userToken = this.sequelize.models.userToken;
+    this.userToken =  this.sequelize.models.userToken;
   }
 
   async associate() {
@@ -53,7 +54,7 @@ export class database implements dbInterface {
 }
 
 export const getDBInstance = async () => {
-  const DB = new database();
+  const DB = new Database();
   await DB.authenticate();
   return DB;
 };

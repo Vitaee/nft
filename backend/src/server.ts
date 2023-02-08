@@ -2,6 +2,7 @@
 import express, { Application, Request, Response } from 'express';
 import configs from './utils/configuration';
 import authRouter from './routes/auth';
+import userRouter from './routes/user';
 
 const app: Application = express();
 
@@ -13,7 +14,8 @@ app.get('/', async (req: Request, res: Response) => {
   res.status(200).send({ message: 'Express app running well!' });
 });
 
-app.use('/user', authRouter);
+app.use('/auth', authRouter);
+app.use('/user', userRouter);
 
 app.listen(configs.port, () => {
   console.log(`Node app listening on port ${configs.port}`);
