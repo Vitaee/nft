@@ -22,6 +22,7 @@ export async function initUser(sequelize: Sequelize) {
       username: {
           type: new DataTypes.STRING(256),
           allowNull: false
+          
       },
       email: {
           type: new DataTypes.STRING(256),
@@ -38,7 +39,8 @@ export async function initUser(sequelize: Sequelize) {
         paranoid: true,
         timestamps: true,
         freezeTableName: true,
-        underscored: true
+        underscored: true,
+        indexes: [ { unique: true, fields: ['username' , 'email'] } ]
     },
   );
 }

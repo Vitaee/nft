@@ -4,7 +4,7 @@
   "description": "nft backend api",
   "main": "server.ts",
   "scripts": {
-    "start:dev": "cross-env NODE_ENV=development nodemon",
+    "start:dev": "cross-env NODE_ENV=development TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true NODE_PATH=src nodemon src/server.ts",
     "start": "npm run build && cross-env NODE_ENV=production node build/index.js",
     "lint": "eslint . --ext .ts",
     "prettier-format": "run-script-os",
@@ -17,7 +17,9 @@
     "prettier-watch:default": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
     "test": "jest",
     "test:dev": "jest --watchAll",
-    "build": "rimraf ./build && tsc"
+    "build": "rimraf ./build && tsc",
+    "clean": "tsc --build --clean"
+
   },
   "husky": {
     "hooks": {

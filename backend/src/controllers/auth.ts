@@ -20,7 +20,7 @@ export const userRegister =  async (req: Request, res: Response): Promise<Respon
 
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
         
-        const user: User = await database.user.create({ ...{ username: "can", email: "can@gmail.com", password:hashedPassword } })
+        const user: User = await database.user.create({ ...{ username: req.body.username, email: req.body.email, password:hashedPassword } })
 
         const { accessToken, refreshToken } = await generateTokens(user);
 
