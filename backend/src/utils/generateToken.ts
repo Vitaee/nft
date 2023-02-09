@@ -14,22 +14,22 @@ export const generateTokens = async (user: User): Promise<{accessToken:string, r
 
     const payload = { id: user.id };
 
-    const accessToken = jwt.sign(payload, configs.access_token_private_key, { expiresIn: "30d" });
+    const accessToken = jwt.sign(payload, configs.access_token_private_key, { expiresIn: "1m" });
 
-    const refreshToken = jwt.sign(payload, configs.refresh_token_private_key, { expiresIn: "30d" });
+    const refreshToken = jwt.sign(payload, configs.refresh_token_private_key, { expiresIn: "7d" });
 
-    const userToken: UserToken = await database.userToken.findOne({ where: { userId: user.id } });
-    
-    if (userToken) {
+    const checkDbToken: UserToken = await database.userToken.findOne({ where: { fk_userid: user.id } });
+
+    if (checkDbToken) {
         await database.userToken.destroy({
             where: { 
-                userId: user.id,
+                fk_userid: user.id,
             }
         });
     }
     
     
-    await database.userToken.create({ ...{userId: user.id, token: refreshToken } })
+    await database.userToken.create({ ...{token: refreshToken, fk_userid: user.id },  })
 
     return { accessToken, refreshToken }
   } catch (err) {

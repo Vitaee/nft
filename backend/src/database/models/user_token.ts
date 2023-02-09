@@ -3,7 +3,6 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
 
 export class UserToken extends Model {
-  public userId?: number;
   public token?: string;
   public createdAt?: Date;
 }
@@ -12,10 +11,11 @@ export async function initUserToken(sequelize: Sequelize) {
   sequelize.define(
     'userToken',
     {
-      userId: {
+      id: {
         type: new DataTypes.INTEGER(),
         primaryKey: true,
         allowNull: false,
+        autoIncrement: true,
       },
       token: {
           type: new DataTypes.STRING(256),

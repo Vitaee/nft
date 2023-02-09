@@ -113,3 +113,7 @@ dist
 
 backend/.vscode
 backend/build
+
+backend/.env.test
+backend/.env
+backend/.env.production

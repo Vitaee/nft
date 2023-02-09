@@ -1,6 +1,4 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable no-console */
+/* eslint no-console: ["error", { allow: ["warn", "error", "log"] }] */
 import * as pg from 'pg';
 import { Sequelize } from 'sequelize';
 import { dbInterface } from '../interfaces/dbinterface';
@@ -29,11 +27,14 @@ export class Database implements dbInterface {
     initUser(this.sequelize);
     initUserToken(this.sequelize);
     this.user = this.sequelize.models.user;
-    this.userToken =  this.sequelize.models.userToken;
+    this.userToken = this.sequelize.models.userToken;
   }
 
   async associate() {
-    this.userToken.belongsTo(this.user, { through: 'userToken' });
+    this.userToken.belongsTo(this.user, {
+      foreignKey: 'fk_userid',
+      targetKey: 'id',
+    });
   }
 
   async authenticate() {
