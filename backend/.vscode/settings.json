@@ -3,9 +3,10 @@
       "source.fixAll.eslint": true
     },
     "eslint.validate": ["javascript", "typescript"],
+    "eslint.alwaysShowStatus": true,
     "editor.formatOnSave": true,
     "[javascript]": {
-      "editor.formatOnSave": false
+      "editor.formatOnSave": true,
     },
     "[typescript]": {
       "editor.formatOnSave": false
