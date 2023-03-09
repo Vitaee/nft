@@ -3,14 +3,15 @@
 > This project particularly focused around Domain-Driven Design and large-scale enterprise application patterns.
 
 ### Features
-
-- Minimal
-- TypeScript
+- Developing scalable TypeScript Express application.
 - Testing with Jest
 - Linting with Eslint and Prettier
 - Pre-commit hooks with Husky
 - VS Code debugger scripts
 - Local development with Nodemon
+- Access & Refresh JWT Authentication
+- CRUD operations for User Model.
+- Using PostgreSQL database with sequelize. 
 
 ### Environments
 
@@ -41,7 +42,7 @@ Builds the app at `build`, cleaning the folder first.
 
 #### `npm run test`
 
-Runs the `jest` tests once.
+Runs the `jest` tests once. You can create `.env.test` file to use another environemnt for testing.
 
 #### `npm run test:dev`
 
