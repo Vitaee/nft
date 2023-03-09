@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { CommonData } from '../interfaces/scraperinterfaces';
 import { sourceLinks } from './links';
+import { Database, getDBInstance } from '../database/db';
 
-async function getDataAirNfts(limit: number, page: number) {
+async function getDataAirNfts() {
   // airnfts categories: auctions, collections, games, art, photo, music.
   const request = await axios.get(sourceLinks.airNft);
 
@@ -26,6 +27,8 @@ async function getDataAirNfts(limit: number, page: number) {
 
     break;
   }
+
+  return jsonData;
 }
 
 async function getDataRarible() {
@@ -59,6 +62,8 @@ async function getDataRarible() {
 
     break;
   }
+
+  return jsonData;
 }
 
 async function getDataPortion() {
@@ -72,7 +77,7 @@ async function getDataPortion() {
     const item = response.Items[index];
 
     jsonData.data.push({
-      price: item.listingPrice ? item.listingPrice : 'No Price yet.',
+      price: item.listingPrice ? item.listingPrice : 0,
       description: item.Description,
       ArtName: item.artName,
       ArtistName: item.Artist,
@@ -83,6 +88,8 @@ async function getDataPortion() {
 
     break;
   }
+
+  return jsonData;
 }
 
 async function getDataNfts() {
@@ -107,10 +114,36 @@ async function getDataNfts() {
 
     break;
   }
-  console.log(jsonData);
+  return jsonData;
+}
+
+async function saveDataToDb() {
+  const [nftsData, portionData, raribleData, airData]: any =
+    await Promise.allSettled([
+      getDataNfts(),
+      getDataPortion(),
+      getDataRarible(),
+      getDataAirNfts(),
+    ]);
+
+  const database: Database = await getDBInstance();
+  const allData = [
+    ...nftsData.value.data,
+    ...portionData.value.data,
+    ...raribleData.value.data,
+    ...airData.value.data,
+  ];
+
+  try {
+    await database.nfts.bulkCreate(allData);
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 //getDataAirNfts();
 //getDataRarible();
 //getDataPortion();
-getDataNfts();
+//getDataNfts();
+
+saveDataToDb();

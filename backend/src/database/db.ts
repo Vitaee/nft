@@ -5,11 +5,13 @@ import { dbInterface } from '../interfaces/dbinterface';
 import configs from '../utils/configuration';
 import { initUser } from './models/user';
 import { initUserToken } from './models/user_token';
+import { initNft } from './models/nfts';
 
 export class Database implements dbInterface {
   sequelize: Sequelize;
   user: any;
   userToken: any;
+  nfts: any;
 
   constructor() {
     this.sequelize = new Sequelize(
@@ -26,8 +28,10 @@ export class Database implements dbInterface {
 
     initUser(this.sequelize);
     initUserToken(this.sequelize);
+    initNft(this.sequelize);
     this.user = this.sequelize.models.user;
     this.userToken = this.sequelize.models.userToken;
+    this.nfts = this.sequelize.models.nfts;
   }
 
   async associate() {

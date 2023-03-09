@@ -18,7 +18,7 @@
     "test": "cross-env NODE_ENV=test && jest --forceExit --detectOpenHandles --maxWorkers=1",
     "build": "rimraf ./build && tsc",
     "clean": "tsc --build --clean",
-    "scrape": "ts-node ./src/data/dataScraper.ts"
+    "scrape": "cross-env NODE_ENV=development ts-node ./src/data/dataScraper.ts"
   },
   "husky": {
     "hooks": {
