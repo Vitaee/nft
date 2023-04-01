@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development TS_NODE_FILES=true TS_NODE_TRANSPILE_ONLY=true NODE_PATH=src nodemon src/server.ts",
     "start": "npm run build && cross-env NODE_ENV=production node build/index.js",
-    "docker-dev:build" : "docker compose -f docker-compose.dev.yml build",
+    "docker-dev:build": "docker compose -f docker-compose.dev.yml build",
     "docker-dev:up": "docker compose -f docker-compose.dev.yml up -d",
     "lint": "eslint . --ext .ts",
     "prettier-format": "run-script-os",
@@ -53,7 +53,7 @@
     "eslint-plugin-jest": "^27.0.4",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.1",
-    "jest": "^29.1.2",
+    "jest": "^29.5.0",
     "nodemon": "^2.0.20",
     "onchange": "^7.1.0",
     "prettier": "^2.7.1",
